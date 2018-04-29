@@ -1,10 +1,8 @@
 ﻿using Fiap.ProjetoFifa2018.Dominio.Exceptions;
 using Fiap.ProjetoFifa2018.Dominio.Jogadores;
 using Fiap.ProjetoFifa2018.Infra.Dominio;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Fiap.ProjetoFifa2018.Dominio.Entidades.Times
 {

@@ -1,8 +1,8 @@
 ﻿using Fiap.ProjetoFifa2018.Dominio.Entidades.Times;
 using Fiap.ProjetoFifa2018.Dominio.Entidades.Torneios;
 using Fiap.ProjetoFifa2018.Dominio.Jogadores;
+using Fiap.ProjetoFifa2018.Persistencia.Configs;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace Fiap.ProjetoFifa2018.Persistencia.Contexto
 {
@@ -18,5 +18,12 @@ namespace Fiap.ProjetoFifa2018.Persistencia.Contexto
         public DbSet<Jogador> Jogadores { get; set; }
         public DbSet<Torneio> Torneios { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.ApplyConfiguration(new TimeConfig());
+            builder.ApplyConfiguration(new JogadorConfig());
+        }
     }
 }

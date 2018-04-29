@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Fiap.ProjetoFifa2018.Persistencia.Contexto;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Net.Http.Headers;
 
 namespace Fiap.ProjetoFifa2018
 {
@@ -24,6 +26,14 @@ namespace Fiap.ProjetoFifa2018
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.Configure<GzipCompressionProviderOptions>(
+              o => o.Level = System.IO.Compression.CompressionLevel.Fastest);
+
+            services.AddResponseCompression(o =>
+            {
+                o.Providers.Add<GzipCompressionProvider>();
+            });
 
             var connection = @"Server=(localdb)\mssqllocaldb;Database=ProjetoFifa2018;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<CopaContexto>
@@ -53,8 +63,20 @@ namespace Fiap.ProjetoFifa2018
 
             app.UseAuthentication();
 
-            app.UseStaticFiles();
-            
+            app.UseResponseCompression();
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = ctx =>
+                {
+                    const int durationInSeconds = 60 * 60 * 24;
+                    ctx.Context.Response.Headers[HeaderNames.CacheControl] =
+                        "public,max-age=" + durationInSeconds;
+                }
+            });
+
+            app.UseAuthentication();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

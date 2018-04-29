@@ -7,7 +7,7 @@ namespace Fiap.ProjetoFifa2018.Web.ViewModel
 {
     public class LoginViewModel
     {
-        public string UseName { get; set; }
+        public string UserName { get; set; }
         public string Password { get; set; }
         public bool IsPersistent { get; set; }
     }
