@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Fiap.ProjetoFifa2018.Infra\Fiap.ProjetoFifa2018.Infra.csproj" />
+  </ItemGroup>
+
 </Project>
