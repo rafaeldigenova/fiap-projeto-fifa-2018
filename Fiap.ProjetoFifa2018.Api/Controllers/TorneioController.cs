@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Fiap.ProjetoFifa2018.Dominio.Repositorios;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fiap.ProjetoFifa2018.Api.Controllers
@@ -9,24 +10,32 @@ namespace Fiap.ProjetoFifa2018.Api.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private readonly ITorneioRepositorio _torneioRepositorio;
+
+        public ValuesController(ITorneioRepositorio torneioRepositorio)
+        {
+            _torneioRepositorio = torneioRepositorio;
+        }
+
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            return Ok(_torneioRepositorio.ObterTorneios());
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            return Ok(_torneioRepositorio.ObterTorneioPorId(id));
         }
 
         // POST api/values
         [HttpPost]
         public void Post([FromBody]string value)
         {
+
         }
 
         // PUT api/values/5
