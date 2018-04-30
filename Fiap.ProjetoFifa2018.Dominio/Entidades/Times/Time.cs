@@ -1,5 +1,5 @@
 ﻿using Fiap.ProjetoFifa2018.Dominio.Exceptions;
-using Fiap.ProjetoFifa2018.Dominio.Jogadores;
+using Fiap.ProjetoFifa2018.Dominio.Entidades.Jogadores;
 using Fiap.ProjetoFifa2018.Infra.Dominio;
 using System.Collections.Generic;
 using System.Linq;

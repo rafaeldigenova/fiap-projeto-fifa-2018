@@ -1,5 +1,4 @@
 ﻿using Fiap.ProjetoFifa2018.Dominio.Entidades.Partidas;
-using Fiap.ProjetoFifa2018.Dominio.Jogadores;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

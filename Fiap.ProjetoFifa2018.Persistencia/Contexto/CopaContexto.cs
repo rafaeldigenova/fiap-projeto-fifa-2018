@@ -1,7 +1,7 @@
 ﻿using Fiap.ProjetoFifa2018.Dominio.Entidades.Partidas;
 using Fiap.ProjetoFifa2018.Dominio.Entidades.Times;
 using Fiap.ProjetoFifa2018.Dominio.Entidades.Torneios;
-using Fiap.ProjetoFifa2018.Dominio.Jogadores;
+using Fiap.ProjetoFifa2018.Dominio.Entidades.Jogadores;
 using Fiap.ProjetoFifa2018.Persistencia.Configs;
 using Microsoft.EntityFrameworkCore;
 

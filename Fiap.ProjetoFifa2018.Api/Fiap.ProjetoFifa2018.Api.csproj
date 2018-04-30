@@ -12,6 +12,8 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.0.0-preview2-final" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="2.4.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Fiap.ProjetoFifa2018.Dominio\Fiap.ProjetoFifa2018.Dominio.csproj" />
+    <ProjectReference Include="..\Fiap.ProjetoFifa2018.Persistencia\Fiap.ProjetoFifa2018.Persistencia.csproj" />
   </ItemGroup>
 
 </Project>

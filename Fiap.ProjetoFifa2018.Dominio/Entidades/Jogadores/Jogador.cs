@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Fiap.ProjetoFifa2018.Dominio.Jogadores
+namespace Fiap.ProjetoFifa2018.Dominio.Entidades.Jogadores
 {
     public class Jogador : EntidadeBase
     {

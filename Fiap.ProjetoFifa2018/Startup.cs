@@ -75,8 +75,6 @@ namespace Fiap.ProjetoFifa2018
                 }
             });
 
-            app.UseAuthentication();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

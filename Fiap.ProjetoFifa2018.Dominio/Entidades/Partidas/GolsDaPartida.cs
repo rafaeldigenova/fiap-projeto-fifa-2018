@@ -1,5 +1,4 @@
-﻿using Fiap.ProjetoFifa2018.Dominio.Entidades.Times;
-using Fiap.ProjetoFifa2018.Dominio.Jogadores;
+﻿using Fiap.ProjetoFifa2018.Dominio.Entidades.Jogadores;
 using Fiap.ProjetoFifa2018.Infra.Dominio;
 using System;
 using System.Collections.Generic;
