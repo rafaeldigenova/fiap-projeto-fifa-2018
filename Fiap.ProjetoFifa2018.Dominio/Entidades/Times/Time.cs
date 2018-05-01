@@ -3,12 +3,18 @@ using Fiap.ProjetoFifa2018.Dominio.Entidades.Jogadores;
 using Fiap.ProjetoFifa2018.Infra.Dominio;
 using System.Collections.Generic;
 using System.Linq;
+using System.ComponentModel.DataAnnotations;
 
 namespace Fiap.ProjetoFifa2018.Dominio.Entidades.Times
 {
     public class Time : EntidadeBase
     {
+        [Display(Name = "Nome")]
+        [Required(ErrorMessage = "Por favor, informe o nome do time")]
         public string NomeDoTime { get; set; }
+
+        [Display(Name = "Escudo")]
+        [Required(ErrorMessage ="Por favor, informe o escudo do time")]
         public string Escudo { get; set; }
 
         private List<Jogador> _jogadores { get; }

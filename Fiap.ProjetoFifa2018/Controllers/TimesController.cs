@@ -3,16 +3,20 @@ using Microsoft.AspNetCore.Mvc;
 using Fiap.ProjetoFifa2018.Models;
 using Fiap.ProjetoFifa2018.Persistencia.Contexto;
 using System.Linq;
+using Fiap.ProjetoFifa2018.Dominio.Entidades.Times;
+using Fiap.ProjetoFifa2018.Dominio.Repositorios;
+using System.Threading.Tasks;
+using Fiap.ProjetoFifa2018.Dominio.Exceptions.Times;
 
 namespace Fiap.ProjetoFifa2018.Web.Controllers
 {
     public class TimesController : Controller
     {
-        private readonly CopaContexto _contexto;
+        private readonly ITimeRepositorio _timeRepositorio;
 
-        public TimesController(CopaContexto contexto)
+        public TimesController(ITimeRepositorio timeRepositorio)
         {
-            _contexto = contexto;
+            _timeRepositorio = timeRepositorio;
         }
 
         public IActionResult Index()
@@ -21,7 +25,8 @@ namespace Fiap.ProjetoFifa2018.Web.Controllers
             {
                 if (User.IsInRole("admin"))
                 {
-                    return View(_contexto.Times.ToList());
+                    //Todo: implementar paginação
+                    return View(_timeRepositorio.ObterTimes());
                 }
                 else
                 {
@@ -34,17 +39,32 @@ namespace Fiap.ProjetoFifa2018.Web.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            var model = new Time();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Time time)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(time);
+            }
+
+            await _timeRepositorio.CadastrarTime(time);
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult Edit(int? id)
         {
-            if (id == null)
+            if (!id.HasValue)
             {
                 return NotFound();
             }
 
-            var time = _contexto.Times.SingleOrDefault(x => x.Id == id);
+            var time = _timeRepositorio.ObterTimePorId(id.Value);
 
             if (time == null)
             {
@@ -54,14 +74,33 @@ namespace Fiap.ProjetoFifa2018.Web.Controllers
             return View(time);
         }
 
-        public IActionResult Delete(int? id)
+        [HttpPost]
+        public async Task<IActionResult> Edit(Time time)
         {
-            if (id == null)
+            if (time.Id == 0 || time.Id == null)
             {
                 return NotFound();
             }
 
-            var time = _contexto.Times.SingleOrDefault(x => x.Id == id);
+            try
+            {
+                await _timeRepositorio.AtualizarTime(time);
+            }catch(TimeNaoEncontradoException ex)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult ConfirmDelete(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return NotFound();
+            }
+
+            var time = _timeRepositorio.ObterTimePorId(id.Value);
 
             if (time == null)
             {
@@ -70,6 +109,26 @@ namespace Fiap.ProjetoFifa2018.Web.Controllers
 
             return View(time);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return NotFound();
+            }
+            try
+            {
+                await _timeRepositorio.DeletarTime(id.Value);
+            }
+            catch (TimeNaoEncontradoException ex)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction("Index");
+        }
+
 
         public IActionResult Error()
         {
