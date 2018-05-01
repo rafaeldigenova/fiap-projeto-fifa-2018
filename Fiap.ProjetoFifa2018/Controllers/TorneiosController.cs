@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Fiap.ProjetoFifa2018.Web.Controllers
 {
-    public class TorneioController : Controller
+    public class TorneiosController : Controller
     {
         // GET: Torneio
         public ActionResult Index()

@@ -32,6 +32,45 @@ namespace Fiap.ProjetoFifa2018.Web.Controllers
             return RedirectToAction("Index", "Account");
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var time = _contexto.Times.SingleOrDefault(x => x.Id == id);
+
+            if (time == null)
+            {
+                return NotFound();
+            }
+
+            return View(time);
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var time = _contexto.Times.SingleOrDefault(x => x.Id == id);
+
+            if (time == null)
+            {
+                return NotFound();
+            }
+
+            return View(time);
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

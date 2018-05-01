@@ -1,0 +1,39 @@
+﻿@model Fiap.ProjetoFifa2018.Dominio.Entidades.Times.Time
+
+@{
+    ViewData["Title"] = "Edição de Times";
+}
+
+<h2>Edição de Times</h2>
+
+<h4>Informe os novos dados do time para salvar</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="NomeDoTime" class="control-label"></label>
+                <input asp-for="NomeDoTime" class="form-control" />
+                <span asp-validation-for="NomeDoTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Escudo" class="control-label"></label>
+                <input asp-for="Escudo" class="form-control" />
+                <span asp-validation-for="Escudo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar para listagem</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

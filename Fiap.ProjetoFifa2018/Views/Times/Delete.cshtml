@@ -1,0 +1,32 @@
+﻿@model Fiap.ProjetoFifa2018.Dominio.Entidades.Times.Time
+
+@{
+    ViewData["Title"] = "Exclusão de Times";
+}
+
+<h2>Exclusão de Times</h2>
+
+<h4>Confirme a exclusão do time</h4>
+<hr />
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            Nome do Time
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NomeDoTime)
+        </dd>
+        <dt>
+            Escudo
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Escudo)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Deletar" class="btn btn-default" /> |
+        <a asp-action="Index">Voltar para listagem</a>
+    </form>
+</div>
