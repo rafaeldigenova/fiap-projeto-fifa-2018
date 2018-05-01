@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Fiap.ProjetoFifa2018.Dominio.Entidades.Jogadores.Jogador>
+
+@{
+    ViewData["Title"] = "Listagem de Jogadores";
+}
+
+<h2>Listagem de Jogadores</h2>
+
+<h4>Todos os jogadores cadastrados</h4>
+<hr />
+<p>
+    <a asp-action="Create">Cadastrar novo jogador</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nome
+            </th>
+            <th>
+                Número da camisa
+            </th>
+            <th>
+                Posição
+            </th>
+            <th>
+                Data de Nascimento
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroDaCamisa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Posicao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataDeNascimento)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

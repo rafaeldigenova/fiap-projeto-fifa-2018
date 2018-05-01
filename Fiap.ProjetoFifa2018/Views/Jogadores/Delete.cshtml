@@ -1,0 +1,44 @@
+﻿@model Fiap.ProjetoFifa2018.Dominio.Entidades.Jogadores.Jogador
+
+@{
+    ViewData["Title"] = "Exclusão de Jogadores";
+}
+
+<h2>Exclusão de Jogadores</h2>
+
+<h4>Confirme a exclusão do jogador</h4>
+<hr />
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            Nome do Jogador
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt>
+            Número da Camisa
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumeroDaCamisa)
+        </dd>
+        <dt>
+            Posição
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Posicao)
+        </dd>
+        <dt>
+            Data de Nascimento
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataDeNascimento)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Deletar" class="btn btn-default" /> |
+        <a asp-action="Index">Voltar para listagem</a>
+    </form>
+</div>
