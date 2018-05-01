@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "Usuário não encontrado";
+}
+
+<h2>Usuário não encontrado</h2>
+
+<h4>Não foi encontrado um usuário com as credenciais fornecidas, tente novamente</h4>
+<hr />
+
+<div>
+    <a asp-action="Index">Voltar para tela de login</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
