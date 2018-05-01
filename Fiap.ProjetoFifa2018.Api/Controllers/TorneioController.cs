@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Fiap.ProjetoFifa2018.Dominio.Entidades.Torneios;
 using Fiap.ProjetoFifa2018.Dominio.Exceptions.Torneios;
 using Fiap.ProjetoFifa2018.Dominio.Repositorios;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fiap.ProjetoFifa2018.Api.Controllers
 {
+    [Authorize(Roles = "admins")]
     [Produces("application/json")]
     [Route("api/Torneios")]
     public class TorneiosController : Controller

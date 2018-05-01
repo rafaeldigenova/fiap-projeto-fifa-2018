@@ -24,12 +24,12 @@ namespace Fiap.ProjetoFifa2018.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(ViewModel.LoginViewModel model)
         {
-            if (model.UserName == "rodolfo" && model.Password == "123")
+            if (model.UserName == "lucas" && model.Password == "123")
             {
                 var claims = new List<Claim>();
                 claims.Add(new Claim(ClaimTypes.Name, model.UserName));
-                var id = new ClaimsIdentity(claims, "password");
                 claims.Add(new Claim(ClaimTypes.Role, "admin"));
+                var id = new ClaimsIdentity(claims, "password");                
                 var principal = new ClaimsPrincipal(id);
 
                 await HttpContext.SignInAsync("app", principal, new AuthenticationProperties() { IsPersistent = model.IsPersistent });

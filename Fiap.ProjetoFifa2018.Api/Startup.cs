@@ -71,11 +71,12 @@ namespace Fiap.ProjetoFifa2018.Api
                 c.SwaggerDoc("v1", new Info { Title = "Fifa 2018", Version = "v1" });
             });
 
-            /*services.AddAuthentication(options =>
+            services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = "Jwt";
                 options.DefaultChallengeScheme = "Jwt";
-            }).AddJwtBearer("Jwt", options =>
+            })
+            .AddJwtBearer("Jwt", options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -88,8 +89,7 @@ namespace Fiap.ProjetoFifa2018.Api
                     ValidateLifetime = true, //validate the expiration and not before values in the token
                     ClockSkew = TimeSpan.FromMinutes(5) //5 minute tolerance for the expiration date
                 };
-            });*/
-
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -119,6 +119,8 @@ namespace Fiap.ProjetoFifa2018.Api
             });
 
             app.UseResponseCompression();
+
+            app.UseAuthentication();
 
             app.UseCors("Default");
 

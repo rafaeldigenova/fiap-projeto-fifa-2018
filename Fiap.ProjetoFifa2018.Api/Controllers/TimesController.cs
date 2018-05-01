@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Fiap.ProjetoFifa2018.Dominio.Entidades.Times;
 using Fiap.ProjetoFifa2018.Dominio.Exceptions.Times;
 using Fiap.ProjetoFifa2018.Dominio.Repositorios;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fiap.ProjetoFifa2018.Api.Controllers
 {
+    [Authorize(Roles = "admins")]
     [Produces("application/json")]
     [Route("api/Times")]
     public class TimesController : Controller
