@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Fiap.ProjetoFifa2018.Aplicacao.Grupos;
+using Fiap.ProjetoFifa2018.Dominio.Repositorios;
 using Fiap.ProjetoFifa2018.Persistencia.Contexto;
+using Fiap.ProjetoFifa2018.Persistencia.Repositorios;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -29,6 +32,12 @@ namespace Fiap.ProjetoFifa2018
 
             services.Configure<GzipCompressionProviderOptions>(
               o => o.Level = System.IO.Compression.CompressionLevel.Fastest);
+
+            services.AddTransient<ITorneioRepositorio, TorneioRepositorio>();
+            services.AddTransient<ITimeRepositorio, TimeRepositorio>();
+            services.AddTransient<IJogadorRepositorio, JogadorRepositorio>();
+
+            services.AddScoped<IServicoGrupo, ServicoGrupo>();
 
             services.AddResponseCompression(o =>
             {

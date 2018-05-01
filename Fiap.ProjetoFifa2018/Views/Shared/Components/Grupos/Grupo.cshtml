@@ -1,0 +1,11 @@
+﻿@model List<Fiap.ProjetoFifa2018.Web.ViewModel.GrupoViewModel>
+
+<ul class="grupo">
+    @foreach (var item in Model)
+    {
+        <li>
+            <h4>@item.NomeDoCurso</h4>
+            @{await Html.RenderPartialAsync("Grupos/Time", item.Times);}
+        </li>
+    }
+</ul>

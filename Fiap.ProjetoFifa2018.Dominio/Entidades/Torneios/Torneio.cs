@@ -32,7 +32,7 @@ namespace Fiap.ProjetoFifa2018.Dominio.Entidades.Torneios
         /// </summary>
         /// <param name="grupo"></param>
         /// <exception cref="JogadorJaCadastradoNoTimeException">Retorna exceção caso o grupo já tenha sido adicionado ao torneio</exception>
-        public void AdicionarJogador(Grupo grupo)
+        public void AdicionarGrupo(Grupo grupo)
         {
             var grupoDoTorneio = _grupos.Where(x => x.Id == grupo.Id).FirstOrDefault();
 

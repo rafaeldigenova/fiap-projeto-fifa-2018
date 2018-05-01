@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Fiap.ProjetoFifa2018.Dominio\Fiap.ProjetoFifa2018.Dominio.csproj" />
+  </ItemGroup>
+
 </Project>

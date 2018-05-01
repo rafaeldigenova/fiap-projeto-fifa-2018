@@ -10,6 +10,7 @@ namespace Fiap.ProjetoFifa2018.Dominio.Entidades.Torneios
     {
         public Grupo Grupo { get; set; }
         public string NomeDoTime { get; set; }
+        public string Escudo { get; set; }
         public int IdDoTime { get; set; }
         public int PontuacaoAtual { get; set; }
         public int Vitorias { get; set; }
@@ -17,5 +18,15 @@ namespace Fiap.ProjetoFifa2018.Dominio.Entidades.Torneios
         public int Derrotas { get; set; }
         public int GolsMarcados { get; set; }
         public int GolsSofridos { get; set; }
+
+        public TimeDoGrupo()
+        {
+            PontuacaoAtual = 0;
+            Vitorias = 0;
+            Empates = 0;
+            Derrotas = 0;
+            GolsSofridos = 0;
+            GolsMarcados = 0;
+        }
     }
 }
