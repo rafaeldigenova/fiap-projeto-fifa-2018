@@ -18,7 +18,7 @@ namespace Fiap.ProjetoFifa2018.Aplicacao.Grupos
 
         public List<Grupo> ObterGrupos()
         {
-            var torneio = _repositorioTorneios.ObterTorneioPorId(1);
+            var torneio = _repositorioTorneios.ObterTorneioPorNome("Fifa 2018");
 
             return torneio.Grupos.ToList();
         }

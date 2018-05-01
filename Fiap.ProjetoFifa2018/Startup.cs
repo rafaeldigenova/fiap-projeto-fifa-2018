@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Fiap.ProjetoFifa2018.Aplicacao.Grupos;
+﻿using Fiap.ProjetoFifa2018.Aplicacao.Grupos;
 using Fiap.ProjetoFifa2018.Dominio.Repositorios;
 using Fiap.ProjetoFifa2018.Persistencia.Contexto;
 using Fiap.ProjetoFifa2018.Persistencia.Repositorios;

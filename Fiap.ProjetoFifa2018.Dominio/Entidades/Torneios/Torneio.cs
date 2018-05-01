@@ -12,19 +12,13 @@ namespace Fiap.ProjetoFifa2018.Dominio.Entidades.Torneios
         public int QuantidadeDeTimes { get; set; }
         public int QuantidadeDeGrupos { get; set; }
         public DateTime DataDeInicioDoTorneio { get; set; }
+        public string Nome { get; set; }
 
-        private List<Grupo> _grupos { get; }
-        public IReadOnlyCollection<Grupo> Grupos
-        {
-            get
-            {
-                return _grupos.ToArray();
-            }
-        }
+        public List<Grupo> Grupos { get; set; }
 
         public Torneio()
         {
-            _grupos = new List<Grupo>();
+            Grupos = new List<Grupo>();
         }
 
         /// <summary>
@@ -34,12 +28,14 @@ namespace Fiap.ProjetoFifa2018.Dominio.Entidades.Torneios
         /// <exception cref="JogadorJaCadastradoNoTimeException">Retorna exceção caso o grupo já tenha sido adicionado ao torneio</exception>
         public void AdicionarGrupo(Grupo grupo)
         {
-            var grupoDoTorneio = _grupos.Where(x => x.Id == grupo.Id).FirstOrDefault();
+            var grupoDoTorneio = Grupos.Where(x => x.Id == grupo.Id).FirstOrDefault();
 
-            if (grupoDoTorneio != null)
+            if (grupoDoTorneio != null && grupo.Id != 0)
                 throw new TimeJaCadastradoNoGrupoException();
 
-            _grupos.Add(grupo);
+            grupo.Torneio = this;
+
+            Grupos.Add(grupo);
         }
 
         /// <summary>
@@ -48,8 +44,12 @@ namespace Fiap.ProjetoFifa2018.Dominio.Entidades.Torneios
         /// <param name="grupos"></param>
         public void AdicionarGrupos(List<Grupo> grupos)
         {
-            var gruposASeremAdicionados = grupos.Where(x => !_grupos.Any(y => y.Id == x.Id));
-            _grupos.AddRange(gruposASeremAdicionados);
+            var gruposASeremAdicionados = grupos.Where(x => !Grupos.Any(y => y.Id == x.Id));
+            foreach(var grupo in gruposASeremAdicionados)
+            {
+                grupo.Torneio = this;
+            }
+            Grupos.AddRange(gruposASeremAdicionados);
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Fiap.ProjetoFifa2018.Dominio.Entidades.Torneios
         /// <param name="grupos"></param>
         public void RemoverGrupos(List<Grupo> grupos)
         {
-            grupos.ForEach(x => _grupos.Remove(x));
+            grupos.ForEach(x => Grupos.Remove(x));
         }
     }
 }

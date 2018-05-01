@@ -7,7 +7,7 @@ namespace Fiap.ProjetoFifa2018.Web.ViewModel
 {
     public class GrupoViewModel
     {
-        public string NomeDoCurso { get; set; }
+        public string NomeDoGrupo { get; set; }
         public List<TimeViewModel> Times { get; set; }
     }
 }

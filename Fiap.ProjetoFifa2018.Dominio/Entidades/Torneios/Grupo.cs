@@ -12,18 +12,11 @@ namespace Fiap.ProjetoFifa2018.Dominio.Entidades.Torneios
         public string Nome { get; set; }
         public Torneio Torneio { get; set; }
 
-        private List<TimeDoGrupo> _times { get; }
-        public IReadOnlyCollection<TimeDoGrupo> Times
-        {
-            get
-            {
-                return _times.ToArray();
-            }
-        }
+        public List<TimeDoGrupo> Times { get; set; }
 
         public Grupo()
         {
-            _times = new List<TimeDoGrupo>();
+            Times = new List<TimeDoGrupo>();
         }
 
         /// <summary>
@@ -33,12 +26,14 @@ namespace Fiap.ProjetoFifa2018.Dominio.Entidades.Torneios
         /// <exception cref="JogadorJaCadastradoNoTimeException">Retorna exceção caso o time já tenha sido adicionado ao grupo</exception>
         public void AdicionarTime(TimeDoGrupo time)
         {
-            var timeDoGrupo = _times.Where(x => x.Id == time.Id).FirstOrDefault();
+            var timeDoGrupo = Times.Where(x => x.Id == time.Id).FirstOrDefault();
 
-            if (timeDoGrupo != null)
+            if (timeDoGrupo != null && time.Id != 0)
                 throw new TimeJaCadastradoNoGrupoException();
 
-            _times.Add(time);
+            time.Grupo = this;
+
+            Times.Add(time);
         }
 
         /// <summary>
@@ -47,8 +42,14 @@ namespace Fiap.ProjetoFifa2018.Dominio.Entidades.Torneios
         /// <param name="times" cref="TimeDoGrupo"></param>
         public void AdicionarJogadores(List<TimeDoGrupo> times)
         {
-            var timesASeremAdicionados = times.Where(x => !_times.Any(y => y.Id == x.Id));
-            _times.AddRange(timesASeremAdicionados);
+            var timesASeremAdicionados = times.Where(x => !Times.Any(y => y.Id == x.Id));
+
+            foreach (var time in timesASeremAdicionados)
+            {
+                time.Grupo = this;
+            }
+
+            Times.AddRange(timesASeremAdicionados);
         }
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace Fiap.ProjetoFifa2018.Dominio.Entidades.Torneios
         /// <param name="times"></param>
         public void RemoverTimes(List<TimeDoGrupo> times)
         {
-            times.ForEach(x => _times.Remove(x));
+            times.ForEach(x => Times.Remove(x));
         }
     }
 }

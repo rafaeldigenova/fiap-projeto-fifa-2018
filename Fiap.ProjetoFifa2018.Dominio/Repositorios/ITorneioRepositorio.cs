@@ -11,6 +11,7 @@ namespace Fiap.ProjetoFifa2018.Dominio.Repositorios
     {
         Pagina<Torneio> ObterTorneiosPaginados(int paginaAtual, int itensPorPagina);
         Torneio ObterTorneioPorId(int id);
+        Torneio ObterTorneioPorNome(string nome);
         Task<Torneio> CadastrarTorneio(Torneio torneio);
         Task<Torneio> AtualizarTorneio(Torneio torneio);
         Task DeletarTorneio(int id);

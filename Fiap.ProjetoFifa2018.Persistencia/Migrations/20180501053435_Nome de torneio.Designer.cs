@@ -12,9 +12,10 @@ using System;
 namespace Fiap.ProjetoFifa2018.Persistencia.Migrations
 {
     [DbContext(typeof(CopaContexto))]
-    partial class CopaContextoModelSnapshot : ModelSnapshot
+    [Migration("20180501053435_Nome de torneio")]
+    partial class Nomedetorneio
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

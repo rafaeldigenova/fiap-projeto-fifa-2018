@@ -12,9 +12,10 @@ using System;
 namespace Fiap.ProjetoFifa2018.Persistencia.Migrations
 {
     [DbContext(typeof(CopaContexto))]
-    partial class CopaContextoModelSnapshot : ModelSnapshot
+    [Migration("20180501051324_Migration 2")]
+    partial class Migration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -198,8 +199,6 @@ namespace Fiap.ProjetoFifa2018.Persistencia.Migrations
                         .HasMaxLength(15);
 
                     b.Property<DateTime>("DataDeInicioDoTorneio");
-
-                    b.Property<string>("Nome");
 
                     b.Property<int>("QuantidadeDeGrupos");
 

@@ -8,6 +8,7 @@ using System.Text;
 using Fiap.ProjetoFifa2018.Infra.Dominio;
 using Fiap.ProjetoFifa2018.Dominio.Exceptions.Torneios;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fiap.ProjetoFifa2018.Persistencia.Repositorios
 {
@@ -63,6 +64,20 @@ namespace Fiap.ProjetoFifa2018.Persistencia.Repositorios
         public Torneio ObterTorneioPorId(int id)
         {
             return _contexto.Torneios.FirstOrDefault(x => x.Id == id);
+        }
+
+        public Torneio ObterTorneioPorNome(string nome)
+        {
+            try
+            {
+                return _contexto.Torneios
+                    .Include(x => x.Grupos)
+                    .ThenInclude(y => y.Times)
+                    .FirstOrDefault(x => x.Nome.Contains(nome));
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public Pagina<Torneio> ObterTorneiosPaginados(int paginaAtual, int itensPorPagina)
