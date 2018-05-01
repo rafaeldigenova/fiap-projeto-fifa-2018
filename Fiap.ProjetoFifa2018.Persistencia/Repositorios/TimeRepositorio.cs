@@ -22,10 +22,10 @@ namespace Fiap.ProjetoFifa2018.Persistencia.Repositorios
 
         public async Task<Time> AtualizarTime(Time time)
         {
-            var timeNoBanco = ObterTimePorId(time.Id);
-
-            if (timeNoBanco == null)
-                throw new TimeNaoEncontradoException();
+            if (time.Id == 0)
+            {
+                throw new ArgumentNullException();
+            }
 
             _contexto.Times.Update(time);
 
@@ -62,7 +62,12 @@ namespace Fiap.ProjetoFifa2018.Persistencia.Repositorios
 
         public Time ObterTimePorId(int id)
         {
-            return _contexto.Times.FirstOrDefault(x => x.Id == id);
+            return _contexto.Times.SingleOrDefault(x => x.Id == id);
+        }
+
+        public List<Time> ObterTimes()
+        {
+            return _contexto.Times.ToList();
         }
 
         public Pagina<Time> ObterTimesPaginados(int paginaAtual, int itensPorPagina)

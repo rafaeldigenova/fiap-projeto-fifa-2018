@@ -10,6 +10,7 @@ namespace Fiap.ProjetoFifa2018.Dominio.Repositorios
     public interface ITimeRepositorio
     {
         Pagina<Time> ObterTimesPaginados(int paginaAtual, int itensPorPagina);
+        List<Time> ObterTimes();
         Time ObterTimePorId(int id);
         Task<Time> CadastrarTime(Time time);
         Task<Time> AtualizarTime(Time time);

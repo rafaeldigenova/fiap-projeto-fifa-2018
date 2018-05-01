@@ -1,11 +1,11 @@
 ﻿@model List<Fiap.ProjetoFifa2018.Web.ViewModel.TimeViewModel>
 
-<ul class="time">
+<ul class="time list-unstyled">
     @foreach (var item in Model)
     {
         <li>
             <div class="bandeiras @(item.Escudo.ToLower())"></div>
-            @item.NomeDoTime
+            <span class="nome-time">@item.NomeDoTime</span>
         </li>
     }
 </ul>

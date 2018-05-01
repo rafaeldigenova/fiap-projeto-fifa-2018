@@ -33,3 +33,23 @@
         display: none;
     }
 }
+
+.bandeiras {
+    vertical-align: middle;
+}
+
+
+.nome-time {
+    font-size: 24px;
+    padding-left: 10px;
+}
+
+.grupo h2 {
+    background-color: #99080d;
+    color: white;
+    padding: 10px 20px;
+}
+
+.grupo li {
+    padding: 10px 10px;
+}
