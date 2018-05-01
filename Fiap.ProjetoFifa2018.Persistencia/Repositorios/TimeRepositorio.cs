@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Fiap.ProjetoFifa2018.Persistencia.Repositorios
 {
@@ -19,7 +20,7 @@ namespace Fiap.ProjetoFifa2018.Persistencia.Repositorios
             _contexto = contexto;
         }
 
-        public Time AtualizarTime(Time time)
+        public async Task<Time> AtualizarTime(Time time)
         {
             var timeNoBanco = ObterTimePorId(time.Id);
 
@@ -28,10 +29,12 @@ namespace Fiap.ProjetoFifa2018.Persistencia.Repositorios
 
             _contexto.Times.Update(time);
 
+            await _contexto.SaveChangesAsync();
+
             return time;
         }
 
-        public Time CadastrarTime(Time time)
+        public async Task<Time> CadastrarTime(Time time)
         {
             var timeNoBanco = ObterTimePorId(time.Id);
 
@@ -40,10 +43,12 @@ namespace Fiap.ProjetoFifa2018.Persistencia.Repositorios
 
             _contexto.Times.Update(time);
 
+            await _contexto.SaveChangesAsync();
+
             return time;
         }
 
-        public void DeletarTime(int id)
+        public async Task DeletarTime(int id)
         {
             var timeNoBanco = ObterTimePorId(id);
 
@@ -51,6 +56,8 @@ namespace Fiap.ProjetoFifa2018.Persistencia.Repositorios
                 throw new TimeNaoEncontradoException();
 
             _contexto.Times.Remove(timeNoBanco);
+
+            await _contexto.SaveChangesAsync();
         }
 
         public Time ObterTimePorId(int id)

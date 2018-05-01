@@ -19,6 +19,7 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\" />
     <Folder Include="Views\Shared\Components\" />
+    <Folder Include="wwwroot\assets\" />
   </ItemGroup>
 
   <ItemGroup>

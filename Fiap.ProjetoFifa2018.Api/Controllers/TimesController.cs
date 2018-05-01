@@ -23,13 +23,14 @@ namespace Fiap.ProjetoFifa2018.Api.Controllers
 
         // GET api/values
         [HttpGet]
+        
         public IActionResult Get(int paginaAtual = 1, int itensPorPagina = 10)
         {
             return Ok(_timeRepositorio.ObterTimesPaginados(paginaAtual, itensPorPagina));
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name="GetTimes")]
         public IActionResult Get(int id)
         {
             return Ok(_timeRepositorio.ObterTimePorId(id));
@@ -37,13 +38,16 @@ namespace Fiap.ProjetoFifa2018.Api.Controllers
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody]Time time)
+        public async Task<IActionResult> Post([FromBody]Time time)
         {
             try
             {
-                var timeCadastrado = _timeRepositorio.CadastrarTime(time);
+                var timeCadastrado = await _timeRepositorio.CadastrarTime(time);
 
-                return Ok(timeCadastrado);
+                //return Ok(timeCadastrado);
+                return CreatedAtRoute(routeName: "GetTimes",
+                                      routeValues: new { id = timeCadastrado.Id },
+                                      value: timeCadastrado);
             }
             catch (NaoEPossivelCadastrarTimeComIdJaExistenteException ex)
             {
@@ -53,11 +57,11 @@ namespace Fiap.ProjetoFifa2018.Api.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]Time time)
+        public async Task<IActionResult> Put(int id, [FromBody]Time time)
         {
             try
             {
-                var timeAtualizado = _timeRepositorio.AtualizarTime(time);
+                var timeAtualizado = await _timeRepositorio.AtualizarTime(time);
 
                 return Ok(timeAtualizado);
             }

@@ -29,7 +29,7 @@ namespace Fiap.ProjetoFifa2018.Api.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetJogador")]
         public IActionResult Get(int id)
         {
             return Ok(_jogadorRepositorio.ObterJogadorPorId(id));
@@ -37,13 +37,15 @@ namespace Fiap.ProjetoFifa2018.Api.Controllers
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody]Jogador jogador)
+        public async Task<IActionResult> Post([FromBody]Jogador jogador)
         {
             try
             {
-                var jogadorCadastrado = _jogadorRepositorio.CadastrarJogador(jogador);
+                var jogadorCadastrado = await _jogadorRepositorio.CadastrarJogador(jogador);
 
-                return Ok(jogadorCadastrado);
+                return CreatedAtRoute(routeName: "GetJogador",
+                                      routeValues: new { id = jogadorCadastrado.Id },
+                                      value: jogadorCadastrado);
             }
             catch (NaoEPossivelCadastrarJogadorComIdJaExistenteException ex)
             {
@@ -53,11 +55,11 @@ namespace Fiap.ProjetoFifa2018.Api.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]Jogador jogador)
+        public async Task<IActionResult> Put(int id, [FromBody]Jogador jogador)
         {
             try
             {
-                var jogadorAtualizado = _jogadorRepositorio.AtualizarJogador(jogador);
+                var jogadorAtualizado = await _jogadorRepositorio.AtualizarJogador(jogador);
 
                 return Ok(jogadorAtualizado);
             }
@@ -69,11 +71,11 @@ namespace Fiap.ProjetoFifa2018.Api.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                _jogadorRepositorio.DeletarJogador(id);
+                await _jogadorRepositorio.DeletarJogador(id);
 
                 return Ok();
             }

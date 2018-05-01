@@ -29,7 +29,7 @@ namespace Fiap.ProjetoFifa2018.Api.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetTorneios")]
         public IActionResult Get(int id)
         {
             return Ok(_torneioRepositorio.ObterTorneioPorId(id));
@@ -37,13 +37,15 @@ namespace Fiap.ProjetoFifa2018.Api.Controllers
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody]Torneio torneio)
+        public async Task<IActionResult> Post([FromBody]Torneio torneio)
         {
             try
             {
-                var torneioCadastrado = _torneioRepositorio.CadastrarTorneio(torneio);
+                var torneioCadastrado = await _torneioRepositorio.CadastrarTorneio(torneio);
 
-                return Ok(torneioCadastrado);
+                return CreatedAtRoute(routeName: "GetTorneios",
+                                      routeValues: new { id = torneioCadastrado.Id },
+                                      value: torneioCadastrado);
             }
             catch (NaoEPossivelCadastrarTorneioComIdJaExistenteException ex)
             {
@@ -53,11 +55,11 @@ namespace Fiap.ProjetoFifa2018.Api.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]Torneio torneio)
+        public async Task<IActionResult> Put(int id, [FromBody]Torneio torneio)
         {
             try
             {
-                var torneioAtualizado = _torneioRepositorio.AtualizarTorneio(torneio);
+                var torneioAtualizado = await _torneioRepositorio.AtualizarTorneio(torneio);
 
                 return Ok(torneioAtualizado);
             }
@@ -69,11 +71,11 @@ namespace Fiap.ProjetoFifa2018.Api.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                _torneioRepositorio.DeletarTorneio(id);
+                await _torneioRepositorio.DeletarTorneio(id);
 
                 return Ok();
             }

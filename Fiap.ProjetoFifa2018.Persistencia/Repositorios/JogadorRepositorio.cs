@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Fiap.ProjetoFifa2018.Persistencia.Repositorios
 {
@@ -19,7 +20,7 @@ namespace Fiap.ProjetoFifa2018.Persistencia.Repositorios
             _contexto = contexto;
         }
 
-        public Jogador AtualizarJogador(Jogador jogador)
+        public async Task<Jogador> AtualizarJogador(Jogador jogador)
         {
             var jogadorNoBanco = ObterJogadorPorId(jogador.Id);
 
@@ -28,10 +29,12 @@ namespace Fiap.ProjetoFifa2018.Persistencia.Repositorios
 
             _contexto.Jogadores.Update(jogador);
 
+            await _contexto.SaveChangesAsync();
+
             return jogador;
         }
 
-        public Jogador CadastrarJogador(Jogador jogador)
+        public async Task<Jogador> CadastrarJogador(Jogador jogador)
         {
             var jogadorNoBanco = ObterJogadorPorId(jogador.Id);
 
@@ -40,10 +43,12 @@ namespace Fiap.ProjetoFifa2018.Persistencia.Repositorios
 
             _contexto.Jogadores.Update(jogador);
 
+            await _contexto.SaveChangesAsync();
+
             return jogador;
         }
 
-        public void DeletarJogador(int id)
+        public async Task DeletarJogador(int id)
         {
             var jogadorNoBanco = ObterJogadorPorId(id);
 
@@ -51,6 +56,8 @@ namespace Fiap.ProjetoFifa2018.Persistencia.Repositorios
                 throw new JogadorNaoEncontradoException();
 
             _contexto.Jogadores.Remove(jogadorNoBanco);
+
+            await _contexto.SaveChangesAsync();
         }
 
         public Pagina<Jogador> ObterJogadoresPaginados(int paginaAtual, int itensPorPagina)

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using Fiap.ProjetoFifa2018.Infra.Dominio;
 using Fiap.ProjetoFifa2018.Dominio.Exceptions.Torneios;
+using System.Threading.Tasks;
 
 namespace Fiap.ProjetoFifa2018.Persistencia.Repositorios
 {
@@ -19,7 +20,7 @@ namespace Fiap.ProjetoFifa2018.Persistencia.Repositorios
             _contexto = contexto;
         }
 
-        public Torneio AtualizarTorneio(Torneio torneio)
+        public async Task<Torneio> AtualizarTorneio(Torneio torneio)
         {
             var timeNoBanco = ObterTorneioPorId(torneio.Id);
 
@@ -28,10 +29,12 @@ namespace Fiap.ProjetoFifa2018.Persistencia.Repositorios
 
             _contexto.Torneios.Update(torneio);
 
+            await _contexto.SaveChangesAsync();
+
             return torneio;
         }
 
-        public Torneio CadastrarTorneio(Torneio torneio)
+        public async Task<Torneio> CadastrarTorneio(Torneio torneio)
         {
             var timeNoBanco = ObterTorneioPorId(torneio.Id);
 
@@ -40,10 +43,12 @@ namespace Fiap.ProjetoFifa2018.Persistencia.Repositorios
 
             _contexto.Torneios.Update(torneio);
 
+            await _contexto.SaveChangesAsync();
+
             return torneio;
         }
 
-        public void DeletarTorneio(int id)
+        public async Task DeletarTorneio(int id)
         {
             var timeNoBanco = ObterTorneioPorId(id);
 
@@ -51,6 +56,8 @@ namespace Fiap.ProjetoFifa2018.Persistencia.Repositorios
                 throw new TorneioNaoEncontradoException();
 
             _contexto.Torneios.Remove(timeNoBanco);
+
+            await _contexto.SaveChangesAsync();
         }
 
         public Torneio ObterTorneioPorId(int id)

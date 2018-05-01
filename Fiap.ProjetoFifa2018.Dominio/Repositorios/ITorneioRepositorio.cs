@@ -3,6 +3,7 @@ using Fiap.ProjetoFifa2018.Infra.Dominio;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Fiap.ProjetoFifa2018.Dominio.Repositorios
 {
@@ -10,8 +11,8 @@ namespace Fiap.ProjetoFifa2018.Dominio.Repositorios
     {
         Pagina<Torneio> ObterTorneiosPaginados(int paginaAtual, int itensPorPagina);
         Torneio ObterTorneioPorId(int id);
-        Torneio CadastrarTorneio(Torneio torneio);
-        Torneio AtualizarTorneio(Torneio torneio);
-        void DeletarTorneio(int id);
+        Task<Torneio> CadastrarTorneio(Torneio torneio);
+        Task<Torneio> AtualizarTorneio(Torneio torneio);
+        Task DeletarTorneio(int id);
     }
 }

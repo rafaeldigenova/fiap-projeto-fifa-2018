@@ -1,0 +1,168 @@
+/*
+This is an example of how to use the image sprite in your own CSS files
+*/
+.bandeiras {
+	background-image: url('bandeiras.sprite.png');
+	background-repeat: no-repeat;
+	display: inline-block;
+}
+.bandeiras.arg {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -10px;
+}
+.bandeiras.aus {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -94px;
+}
+.bandeiras.bel {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -178px;
+}
+.bandeiras.bra {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -262px;
+}
+.bandeiras.col {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -346px;
+}
+.bandeiras.crc {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -430px;
+}
+.bandeiras.cro {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -514px;
+}
+.bandeiras.den {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -598px;
+}
+.bandeiras.egy {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -682px;
+}
+.bandeiras.eng {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -766px;
+}
+.bandeiras.esp {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -850px;
+}
+.bandeiras.fra {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -934px;
+}
+.bandeiras.ger {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -1018px;
+}
+.bandeiras.irn {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -1102px;
+}
+.bandeiras.isl {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -1186px;
+}
+.bandeiras.jpn {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -1270px;
+}
+.bandeiras.kor {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -1354px;
+}
+.bandeiras.ksa {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -1438px;
+}
+.bandeiras.mar {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -1522px;
+}
+.bandeiras.mex {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -1606px;
+}
+.bandeiras.nga {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -1690px;
+}
+.bandeiras.pan {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -1774px;
+}
+.bandeiras.per {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -1858px;
+}
+.bandeiras.pol {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -1942px;
+}
+.bandeiras.por {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -2026px;
+}
+.bandeiras.rus {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -2110px;
+}
+.bandeiras.sen {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -2194px;
+}
+.bandeiras.srb {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -2278px;
+}
+.bandeiras.sui {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -2362px;
+}
+.bandeiras.swe {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -2446px;
+}
+.bandeiras.tun {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -2530px;
+}
+.bandeiras.uru {
+	width: 150px;
+	height: 74px;
+	background-position: -10px -2614px;
+}
