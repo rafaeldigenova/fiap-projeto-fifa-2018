@@ -98,6 +98,16 @@ namespace Fiap.ProjetoFifa2018.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                {
+                    var context = serviceScope.ServiceProvider.GetService<CopaContexto>();
+
+                    if (!context.Database.EnsureCreated())
+                    {
+                        context.Database.Migrate();
+                    }
+                }
             }
 
             app.UseSwagger();
