@@ -21,21 +21,18 @@ namespace Fiap.ProjetoFifa2018.Api.Controllers
             _torneioRepositorio = torneioRepositorio;
         }
 
-        // GET api/values
         [HttpGet]
         public IActionResult Get(int paginaAtual, int itensPorPagina)
         {
             return Ok(_torneioRepositorio.ObterTorneiosPaginados(paginaAtual, itensPorPagina));
         }
 
-        // GET api/values/5
         [HttpGet("{id}", Name = "GetTorneios")]
         public IActionResult Get(int id)
         {
             return Ok(_torneioRepositorio.ObterTorneioPorId(id));
         }
 
-        // POST api/values
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]Torneio torneio)
         {
@@ -47,13 +44,16 @@ namespace Fiap.ProjetoFifa2018.Api.Controllers
                                       routeValues: new { id = torneioCadastrado.Id },
                                       value: torneioCadastrado);
             }
-            catch (NaoEPossivelCadastrarTorneioComIdJaExistenteException ex)
+            catch (NaoEPossivelCadastrarTorneioComIdJaExistenteException)
             {
                 return StatusCode(StatusCodes.Status409Conflict);    
             }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody]Torneio torneio)
         {
@@ -63,13 +63,16 @@ namespace Fiap.ProjetoFifa2018.Api.Controllers
 
                 return Ok(torneioAtualizado);
             }
-            catch(TorneioNaoEncontradoException ex)
+            catch(TorneioNaoEncontradoException)
             {
                 return NotFound();
             }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -79,9 +82,13 @@ namespace Fiap.ProjetoFifa2018.Api.Controllers
 
                 return Ok();
             }
-            catch (TorneioNaoEncontradoException ex)
+            catch (TorneioNaoEncontradoException)
             {
                 return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
     }
